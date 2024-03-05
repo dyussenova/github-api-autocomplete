@@ -25,6 +25,7 @@ inputEl.addEventListener(
   "input",
   debounce(async (e) => {
     const valueEvent = e.target.value.trim();
+    clearList();
     if (valueEvent) {
       const response = await fetch(
         `https://api.github.com/search/repositories?q=${valueEvent}&per_page=5`
@@ -53,7 +54,8 @@ function createRepos(repoData) {
     let stars = repoData.stargazers_count;
     const newRepos = document.createElement("div");
     newRepos.classList.add("repos-card");
-    newRepos.innerHTML = `Name: ${name}<br>Owner: ${owner}<br>Stars: ${stars}`;
+    newRepos.innerText =
+      `Name: ${name}` + `\n` + `Owner: ${owner}` + `\n` + `Stars: ${stars}`;
 
     const btn = document.createElement("button");
 
